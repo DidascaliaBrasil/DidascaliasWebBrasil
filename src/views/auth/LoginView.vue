@@ -3,7 +3,7 @@
     <div class="auth-card">
       <header class="auth-header">
         <div class="logo-placeholder">
-          <img src="\public\img\Didascalias.png" alt="Agora" class="partner-logo" />
+          <img src="/public/img/Didascalias.png" alt="Agora" class="partner-logo" />
         </div>
         <h1>Iniciar sessão</h1>
         <p>Use seu ID da Didascalia para continuar.</p>
@@ -44,13 +44,23 @@
 
 <script setup>
 import { ref } from 'vue';
+import { auth } from '@/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'vue-router';
 import PartnersSection from '@/components/PartnersSection.vue';
 
 const email = ref('');
 const password = ref('');
+const router = useRouter();
 
-const handleLogin = () => {
-  console.log('Login solicitado:', email.value);
+const handleLogin = async () => {
+  try {
+    await signInWithEmailAndPassword(auth, email.value, password.value);
+    console.log('Login realizado com sucesso!');
+    router.push('/home'); // Redireciona para a home
+  } catch (error) {
+    alert("Falha no login: " + error.message);
+  }
 };
 </script>
 

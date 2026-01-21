@@ -66,22 +66,30 @@
 
 <script setup>
 import { ref } from 'vue';
+import { auth } from '@/firebase'; // Importa a config que criamos
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'vue-router';
 import PartnersSection from '@/components/PartnersSection.vue';
 
-const name = ref('');
+const name = ref(''); // Você pode salvar o nome no Firestore depois
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
+const router = useRouter();
 
-const handleRegister = () => {
+const handleRegister = async () => {
   if (password.value !== confirmPassword.value) {
     alert("As senhas não coincidem!");
     return;
   }
-  console.log('Dados de registro:', { 
-    name: name.value, 
-    email: email.value 
-  });
+
+  try {
+    await createUserWithEmailAndPassword(auth, email.value, password.value);
+    alert("Conta criada com sucesso!");
+    router.push('/login');
+  } catch (error) {
+    alert("Erro ao cadastrar: " + error.message);
+  }
 };
 </script>
 

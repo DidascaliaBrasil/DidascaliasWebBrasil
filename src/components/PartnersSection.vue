@@ -2,10 +2,10 @@
   <section class="partners-container">
     <p class="partners-title">Empresas que confiam na Didascalia</p>
     <div class="partners-grid">
-      <img src="\public\img\UCM.png" alt="UCM" class="partner-logo" />
-      <img src="\public\img\UAB.png" alt="UAB" class="partner-logo" />
-      <img src="\public\img\Affect.png" alt="Affect" class="partner-logo" />
-      <img src="\public\img\Agora.png" alt="Agora" class="partner-logo" />
+      <img src="/img/UCM.png" alt="UCM" class="partner-logo" />
+      <img src="/img/UAB.png" alt="UAB" class="partner-logo" />
+      <img src="/img/Affect.png" alt="Affect" class="partner-logo" />
+      <img src="/img/Agora.png" alt="Agora" class="partner-logo" />
     </div>
   </section>
 </template>
